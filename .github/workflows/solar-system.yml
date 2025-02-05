@@ -18,11 +18,11 @@ jobs:
     name: Unit Testing
     strategy:
       matrix:
-        version: [20, 21, 22]
+        version: [18, 19, 20]
         os: [ubuntu-latest, macos-latest]
-        # exclude:
-        #   - version: 18
-        #     os: macos-latest
+        exclude:
+          - version: 18
+            os: macos-latest
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -43,7 +43,7 @@ jobs:
     - name: Archive Test Result
       uses: actions/upload-artifact@v4
       with: 
-        name: Mocha-test-result
+        name: Mocha-test-${{matrix.os}}-${{matrix.version}}-${{matrix.github.run_number}}
         path: test-results.xml
 
 
