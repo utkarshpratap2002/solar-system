@@ -112,6 +112,6 @@ jobs:
         ${{ vars.DOCKER_USERNAME}}/solar-system:${{ github.sha }}
 
         echo "Testing Image using wget"
-        wget -q -O localhost:3000 | grep live
-        
+        wget -q -O - 127.0.0.1:3000 | grep live
+
 
