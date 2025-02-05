@@ -8,7 +8,7 @@ jobs:
     name: Testing Application
     strategy:
       matrix:
-        os: ['ubuntu-latest', 'window-latest']
+        os: ['ubuntu-latest', 'windows-latest']
     runs-on: ${{ matrix.os }}
     timeout-minutes: 0.5
     continue-on-error: true
@@ -19,7 +19,7 @@ jobs:
         echo "Running Test for Ubuntu .... "
 
     - name: Test for Windows
-      if: runner.os == 'Window'
+      if: runner.os == 'Windows'
       run: |
         echo "Running Test for Windows .... "
 
