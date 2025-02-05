@@ -42,7 +42,7 @@ jobs:
       run: npm test
 
     - name: Archive Test Result
-      if: success() && (steps.random-for-testing.outcome == failure() || steps.random-for-testing.outcome == success())
+      if: success() && (steps.random-for-testing.outcome == 'failure' || steps.random-for-testing.outcome == 'success')
       uses: actions/upload-artifact@v4
       with: 
         name: Mocha-test-${{matrix.os}}-${{matrix.version}}-${{matrix.github.run_number}}
