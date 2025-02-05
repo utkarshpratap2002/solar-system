@@ -26,7 +26,7 @@ jobs:
   report:
     needs: testing
     runs-on: ubuntu-latest
-    continue-on-error: true
+    continue-on-error: false
 
     steps:
     - name: Upload Image to AWS S3 bucket
