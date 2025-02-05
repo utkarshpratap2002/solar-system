@@ -42,7 +42,7 @@ jobs:
       run: npm test
 
     - name: Archive Test Result
-      if: failure() || cancelled()
+      if: always()
       uses: actions/upload-artifact@v4
       with: 
         name: Mocha-test-${{matrix.os}}-${{matrix.version}}-${{matrix.github.run_number}}
