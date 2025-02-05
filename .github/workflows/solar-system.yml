@@ -94,5 +94,24 @@ jobs:
         username: ${{ vars.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    - name: Docker Build Image
+      uses: docker/build-push-action@v4
+      with: 
+        context: .
+        push: false
+        tags: ${{ vars.DOCKER_USERNAME}}/solar-system:${{ github.sha }}
+    
+    - name: Image Testing
+      run: |
+        docker images
+        docker run --name solar-system -d \
+        -p 3000:3000 \
+        -e MONGO_URI=$MONGO_URI \
+        -e MONGO_USERNAME=$MONGO_USERNAME \
+        -e MONGO_PASSWORD=$MONGO_PASSWORD \
+        ${{ vars.DOCKER_USERNAME}}/solar-system:${{ github.sha }}
 
+        echo "Testing Image using wget"
+        wget -q -O localhost:3000 | grep live
+        
 
