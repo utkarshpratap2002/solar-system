@@ -9,7 +9,6 @@ jobs:
     strategy:
       matrix:
         os: ['ubuntu-latest', 'window-latest']
-        version: [18, 19, 20]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 0.5
     continue-on-error: true
