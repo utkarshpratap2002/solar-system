@@ -1,0 +1,41 @@
+name: if Expression
+
+on:
+    push
+
+jobs:
+  testing:
+    name: Testing Application
+    strategy:
+      matrix:
+        os: ['ubuntu-latest', 'window-latest']
+        version: [18, 19, 20]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Test for ubuntu
+      if: runner.os == 'Linux'
+      run: |
+        echo "Running Test for Ubuntu .... "
+
+    - name: Test for Windows
+      if: runner.os == 'Window'
+      run: |
+        echo "Running Test for Windows .... "
+
+  report:
+    needs: testing
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+    - name: Upload Image to AWS S3 bucket
+      run: | 
+        echo "Uploading Image ..... "
+
+  deploy: 
+    needs: report
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploying Image 
+      run: |
+        echo "Deploying Image .... "
