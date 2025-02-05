@@ -31,7 +31,7 @@ jobs:
     steps:
     - name: Upload Image to AWS S3 bucket
       run: | 
-        echo "Uploading Image ..... "
+        echo "Uploading Image ..... " && exit 1
 
   deploy: 
     needs: report
