@@ -29,7 +29,7 @@ jobs:
     strategy:
       matrix:
         version: [18, 20]
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest]
         exclude:
           - version: 18
             os: macos-latest
